@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Search, MapPin, Star } from "lucide-react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import LazyImage from "./LazyImage";
 
 interface Hotel {
   id: number;
@@ -71,10 +72,12 @@ export default function HotelList() {
               <div className="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
                 <div className="aspect-w-16 aspect-h-9">
                   <img
-                    src={hotel.image}
-                    alt={hotel.name}
-                    className="object-cover w-full h-48 rounded-t-lg"
+
                   />
+                  <LazyImage src={hotel.image}
+                    alt={hotel.name}
+                    className="object-cover w-full h-48 rounded-t-lg" />
+
                 </div>
                 <div className="p-4">
                   <div className="flex justify-between items-start">

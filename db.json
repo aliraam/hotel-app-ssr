@@ -1,0 +1,47 @@
+{
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Homa Hotel",
+      "description": "Tehran Homa Hotel, one of the most prestigious five-star hotels in the capital, offering luxurious accommodations and world-class service.",
+      "location": {
+        "long": 51.4234,
+        "lat": 35.7219
+      },
+      "stars": 5,
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80"
+    },
+    {
+      "id": 2,
+      "name": "Espinas Palace",
+      "description": "Experience luxury redefined at Espinas Palace, where Persian hospitality meets modern elegance in the heart of Tehran.",
+      "location": {
+        "long": 51.3851,
+        "lat": 35.7447
+      },
+      "stars": 5,
+      "image": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80"
+    },
+    {
+      "id": 3,
+      "name": "Parsian Azadi",
+      "description": "A landmark hotel offering panoramic views of Tehran and the Alborz mountains, combining traditional Iranian architecture with modern amenities.",
+      "location": {
+        "long": 51.3370,
+        "lat": 35.7719
+      },
+      "stars": 5,
+      "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "hotelId": 1,
+      "author": "John Doe",
+      "content": "Excellent service and beautiful views of the city!",
+      "rating": 5,
+      "date": "2024-02-15"
+    }
+  ]
+}

@@ -19,7 +19,8 @@
     "serve:local": "vite serve",
     "clean": "rimraf dist/",
     "copy-files": "copyfiles \"public/**/*\" dist && copyfiles -u 2 \"dist/client/**/*\" dist && copyfiles -u 2 \"dist/client/assets/**/*\" dist/public",
-    "format": "prettier --write src types"
+    "format": "prettier --write src types",
+    "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.66.0",
@@ -28,6 +29,7 @@
     "compression": "1.7.4",
     "cross-env": "^7.0.3",
     "express": "4.18.2",
+    "json-server": "^1.0.0-beta.3",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.475.0",
     "react": "^18.2.0",

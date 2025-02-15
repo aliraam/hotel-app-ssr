@@ -47,9 +47,10 @@ yarn install
 # Start development servers (App + JSON Server)
 
 ```
-yarn dev:server /// for mock server
-yarn server
+yarn dev:server
 App is listening on http://localhost:7456
+
+yarn server /// for mock server
 
 ```
 

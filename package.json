@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "description": "ali baba task",
-
   "author": "Ali Pirani",
   "license": "MIT",
   "scripts": {

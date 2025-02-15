@@ -15,6 +15,17 @@ interface Hotel {
   };
 }
 
+interface comments {
+
+  id: number,
+  hotelId: number,
+  author: string,
+  content: string,
+  rating: number,
+  date: string
+
+}
+
 const getHotelMapIframeUrl = (lat: number, lng: number, name: string) => {
   const zoom = 17;
   const encodedName = encodeURIComponent(name);
@@ -23,10 +34,15 @@ const getHotelMapIframeUrl = (lat: number, lng: number, name: string) => {
 
 export default function HotelDetail() {
   const { id } = useParams();
+  const hotelId = Number(id);
   const queryClient = useQueryClient();
   const hotels = queryClient.getQueryData(["hotels"]) as Hotel[] || [];
-  const hotel = hotels.find((h: any) => h.id === id);
+  const comments = queryClient.getQueryData(["comments", hotelId]) as comments[] || [];
 
+  const hotel = hotels.find((h: any) => h.id === id);
+  const hotelComments = comments.filter((c: comments) => c.hotelId === hotelId);
+
+  console.log(hotelComments, 'comments')
   if (!hotel) return <div>Hotel not found</div>;
 
   return (
@@ -67,6 +83,22 @@ export default function HotelDetail() {
             className="rounded-lg border-none"
             title={`Detailed Map of ${hotel.name}`}
           />
+        </div>
+
+        <div className="mt-8 bg-gray-100 p-6 rounded-lg">
+          <h2 className="text-2xl font-semibold mb-4">User Reviews</h2>
+          {hotelComments.length > 0 ? (
+            hotelComments.map((comment) => (
+              <div key={comment.id} className="border-b border-gray-300 pb-4 mb-4">
+                <p className="text-lg font-semibold">{comment.author}</p>
+                <p className="text-gray-600">{comment.content}</p>
+                <p className="text-sm text-gray-500">{comment.date}</p>
+                <p className="text-yellow-500">⭐ {comment.rating}</p>
+              </div>
+            ))
+          ) : (
+            <p>No comments yet.</p>
+          )}
         </div>
       </div>
     </div>

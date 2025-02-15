@@ -6,11 +6,14 @@ import Main from "./pages/Main";
 import HotelList from "./components/HotelList";
 import HotelDetail from "./components/HotelDetail";
 import { prefetchGetHotels } from "./hooks/useHotel";
+import { prefetchGetComments } from "./hooks/useGetComments";
+import HotelWithPrefetch from "./components/HotelWithPrefetch";
 
 const queryClient = new QueryClient();
 
 // Prefetch data
 await prefetchGetHotels(queryClient);
+
 
 export const App = () => {
   return (
@@ -19,7 +22,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<Main />}>
             <Route index element={<HotelList />} />
-            <Route path="hotel/:id" element={<HotelDetail />} />
+            <Route path="hotel/:id" element={<HotelWithPrefetch />} />
           </Route>
         </Routes>
       </ContextWrapper>

@@ -27,7 +27,7 @@
       "name": "Parsian Azadi",
       "description": "A landmark hotel offering panoramic views of Tehran and the Alborz mountains, combining traditional Iranian architecture with modern amenities.",
       "location": {
-        "long": 51.3370,
+        "long": 51.337,
         "lat": 35.7719
       },
       "stars": 5,
@@ -38,7 +38,7 @@
     {
       "id": 1,
       "hotelId": 1,
-      "author": "John Doe",
+      "author": "reza",
       "content": "Excellent service and beautiful views of the city!",
       "rating": 5,
       "date": "2024-02-15"

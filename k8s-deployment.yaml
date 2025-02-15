@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotels-ssr
+  labels:
+    app: hotels-ssr
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hotels-ssr
+  template:
+    metadata:
+      labels:
+        app: hotels-ssr
+    spec:
+      containers:
+        - name: hotels-ssr
+          image: your-dockerhub-username/hotels-ssr:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7456
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "7456"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 7456
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 7456
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotels-ssr-service
+  labels:
+    app: hotels-ssr
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 7456
+  selector:
+    app: hotels-ssr
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hotels-ssr-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - hotels.example.com
+      secretName: hotels-tls
+  rules:
+    - host: hotels.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hotels-ssr-service
+                port:
+                  number: 80

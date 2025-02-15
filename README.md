@@ -41,7 +41,7 @@ git clone https://github.com/aliraam/hotel-app-ssr.git
 # Install dependencies
 
 ```
-yarn install
+yarn install  // pnpm install // npm install
 ```
 
 # Start development servers (App + JSON Server)
